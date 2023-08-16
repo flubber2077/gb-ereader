@@ -10,7 +10,7 @@ bool screen = 0;
 
 uint8_t letter = 66;
 
-inline void readerInit()
+inline void readerInit(void)
 {
     font_init();
     font_t font = font_load(font_ibm);
@@ -20,7 +20,7 @@ inline void readerInit()
     fadein();
 }
 
-inline void textPosition()
+inline void textPosition(void)
 {
     xPlace++;
     if (xPlace == (screen ? RIGHTSCREEN1 : RIGHTSCREEN0))
@@ -30,16 +30,16 @@ inline void textPosition()
     }
 }
 
-void reader()
+void reader(void)
 {
     readerInit();
+    set_bkg_tiles(xPlace, yPlace, 1, 1, letter);
 
     while (1)
     {
         // non-display logic here
         vsync(); // wait for PPU VRAM to be fully available
         // only VRAM and Map data here.
-        set_bkg_tiles(xPlace, yPlace, 1, 1, letter);
         textPosition();
         if (yPlace == BOTTOMSCREEN)
         {

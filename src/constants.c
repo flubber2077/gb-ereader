@@ -15,3 +15,5 @@
 #define RIGHTSCREEN1 TILEWIDTH - BORDER
 #define TOPSCREEN 0
 #define BOTTOMSCREEN TILEHEIGHT - 1
+
+uint8_t i; // for any local counters

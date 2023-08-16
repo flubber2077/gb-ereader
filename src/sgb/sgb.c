@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <gb/sgb.h>
 
-inline void setSgbBorder() {
+inline void setSgbBorder(void) {
     // Wait 4 frames
     // For PAL SNES this delay is required on startup
     for (uint8_t i = 5; i != 0; i--) vsync();
