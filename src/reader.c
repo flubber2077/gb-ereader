@@ -1,60 +1,56 @@
 #include <gb/gb.h>
-#include "constants.c"
+#include "constants.h"
 #include <stdbool.h>
 #include <gbdk/font.h>
+#include "content/font.tileset.h"
+#include "screeneffects.h"
+#include "bookdata/metadata.h"
 
-// rewrite to use modulo to divide screen, so that program understands page as linear
+uint8_t xPlace = 1, yPlace = 1;
 
-uint8_t xPlace = LEFTSCREEN0, yPlace = 0;
-bool screen = 0;
-
-uint8_t letter = 66;
+uint8_t letter = 'A';
 
 inline void readerInit(void)
 {
-    font_init();
-    font_t font = font_load(font_ibm);
-    font_set(font);
-    move_bkg((uint8_t)-16, 0);
-    window_init();
+    // Window setup
+    SHOW_WIN;
+    set_win_tiles(0,0,sizeof(title),1,title);
+    move_win(30,136);
+
+    // Background setup
+    move_bkg(0, 0);
+    init_bkg(0);
+
+    // Tile setup
+    set_tile_data('A', 48, FONT_TILESET, 0x90);
+    set_tile_data('a', 48, FONT_TILESET, 0x90); // remove once alphabet is long enough
     fadein();
 }
 
 inline void textPosition(void)
 {
     xPlace++;
-    if (xPlace == (screen ? RIGHTSCREEN1 : RIGHTSCREEN0))
+    if (xPlace == 19)
     {
         yPlace++;
-        xPlace = (screen ? LEFTSCREEN1 : LEFTSCREEN0);
+        xPlace = 1;
+    }
+    if (yPlace == 16)
+    {
+        yPlace = 1;
     }
 }
 
 void reader(void)
 {
     readerInit();
-    set_bkg_tiles(xPlace, yPlace, 1, 1, letter);
 
     while (1)
     {
         // non-display logic here
         vsync(); // wait for PPU VRAM to be fully available
         // only VRAM and Map data here.
+        set_bkg_tile_xy(xPlace, yPlace, letter++);
         textPosition();
-        if (yPlace == BOTTOMSCREEN)
-        {
-            yPlace = TOPSCREEN;
-            screen = !screen;
-            if (screen)
-            {
-                move_bkg((uint8_t)112, 0);
-            }
-            else
-            {
-                letter = 'h';
-                move_bkg((uint8_t)-16, 0);
-            }
-            xPlace = screen ? LEFTSCREEN1 : LEFTSCREEN0;
-        }
     }
 }

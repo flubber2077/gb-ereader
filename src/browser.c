@@ -1,9 +1,9 @@
 #include <gb/gb.h>
-#include <stdio.h>
-#include <gbdk/font.h>
-#include "constants.c"
+#include "constants.h"
 #include "content/pointer.c"
-#include "content/metadata.c"
+#include "bookdata/metadata.h"
+#include "content/font.tileset.c"
+#include "screeneffects.h"
 
 typedef struct
 {
@@ -12,7 +12,7 @@ typedef struct
     uint8_t cursorBlink;
 } BrowserVar;
 
-void initbrowser()
+void initbrowser(void)
 {
     SHOW_WIN;
     move_win(7, 130);
@@ -20,10 +20,9 @@ void initbrowser()
     set_sprite_data(1, 2, pointer);
     set_sprite_tile(0, 1);
     move_sprite(0, 16, 24);
+    init_bkg(0);
+    set_tile_data(66, 48, FONT_TILESET, 0x90);
     SHOW_SPRITES;
-    font_init();
-    font_t font = font_load(font_ibm);
-    font_set(font);
     move_bkg(0, 0);
     fadein();
 }
@@ -32,11 +31,11 @@ uint8_t browser(void)
 {
     static BrowserVar browserVar = {0, 0, 0};
     initbrowser();
-    printf("file browser go here more text momre text more text more text");
-    printf("why isn't this working");
+
     while (1)
     {
         browserVar.cursorBlink++;
+        set_bkg_tile_xy(5, 5, 66);
         set_sprite_tile(0, (browserVar.cursorBlink & (uint8_t)0x8) ? 2 : 1);
         switch (joypad())
         {

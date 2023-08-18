@@ -1,17 +1,17 @@
 #include <gb/gb.h>
 #include <stdint.h>
+#include "screeneffects.h"
 #include "splashscreen.c"
 #include "content/content.c"
 #include "sgb/sgb.c"
-#include "window.c"
-#include "constants.c"
+#include "constants.h"
 #include "reader.c"
 #include "browser.c"
 
 // put into struct;
 uint8_t state;
 
-void init()
+void init(void)
 {
     SHOW_SPRITES;
     SHOW_BKG;
@@ -21,7 +21,7 @@ void init()
     NR52_REG = 0x00u; // kill sound, save battery
 }
 
-void main()
+void main(void)
 {
     init();
     state = SPLASHSCREEN;

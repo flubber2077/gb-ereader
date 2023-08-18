@@ -1,32 +1,8 @@
 #include <gb/gb.h>
 #include <stdbool.h>
 #include "content/splashData.c"
-#include "constants.c"
-
-void delayFrame(uint8_t frames){
-    for(i = 0; i < frames; i++){
-        vsync();
-    }
-}
-
-void fadeout(void)
-{
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_WHITE, DMG_DARK_GRAY, DMG_BLACK);
-    delayFrame(4);
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_WHITE, DMG_WHITE, DMG_BLACK);
-    delayFrame(4);
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_WHITE, DMG_WHITE, DMG_WHITE);
-}
-
-void fadein(void)
-{
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_WHITE, DMG_WHITE, DMG_BLACK);
-    delayFrame(4);
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_WHITE, DMG_DARK_GRAY, DMG_BLACK);
-    delayFrame(4);
-    BGP_REG = DMG_PALETTE(DMG_WHITE, DMG_LITE_GRAY, DMG_DARK_GRAY, DMG_BLACK);
-}
-
+#include "screeneffects.h"
+#include "constants.h"
 
 inline void splashscreen(void)
 {
