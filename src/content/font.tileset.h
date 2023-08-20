@@ -2,11 +2,7 @@
 
 #include <gb/gb.h>
 
-#ifndef _FONT_TILESET_H
-#define _FONT_TILESET_H
-
-extern const uint8_t FONT_TILESET[];
+#pragma once
 #define FONT_TILESET_TILE_COUNT 48
 
-
-#endif
+extern const uint8_t FONT_TILESET[];

@@ -1,6 +1,4 @@
-## current thoughts
 
-printf does basically everything i want.
 
 ## Helpful info
 
@@ -19,6 +17,9 @@ Should go from hardest to easiest.
   -ftfy library will be helpful
 - HTML -> GB (edge cases)
 
+## Done
+- Display characters
+
 ## Bare Minimum Needed
 
 Predictions, Steps:
@@ -31,7 +32,6 @@ Predictions, Steps:
 ### Medium
 
 - Define custom GB format
-- Display characters
 
 ### Difficult
 
@@ -45,7 +45,7 @@ Predictions, Steps:
 - Variable width font!
 - Multi-language support. Use windows 1252, can add more later.
 - Border
-- Sound
+- Sound // vexations by satie on the landing screen
 - Splash screen
 - Images?
   - Size isn't really the issue, it's going to be bit depth. 4 bits to work with. Could also limit it to GBC to wring out slightly more SN.

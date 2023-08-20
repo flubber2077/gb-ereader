@@ -8,12 +8,12 @@
 // screen macros
 #define TILEHEIGHT 32
 #define TILEWIDTH 32
-#define BORDER 2
-#define LEFTSCREEN0 BORDER
-#define LEFTSCREEN1 (TILEWIDTH / 2) + BORDER
-#define RIGHTSCREEN0 (TILEWIDTH / 2) - BORDER
-#define RIGHTSCREEN1 TILEWIDTH - BORDER
-#define TOPSCREEN 0
-#define BOTTOMSCREEN TILEHEIGHT - 1
+#define LEFTBORDER 0
+#define RIGHTBORDER 20
+#define TOPSCREEN 1
 
-uint8_t i; // for any local counters
+// text macros
+#define NEWLINE ((uint8_t)10)    // \n
+#define PAGEBREAK ((uint8_t)12)  // \f Formfeed
+
+uint8_t i;  // for any local counters
