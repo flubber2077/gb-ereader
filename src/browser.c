@@ -14,7 +14,7 @@ typedef struct {
 
 inline void initbrowser(void) {
   SHOW_WIN;
-  move_win(7, 130);
+  move_win(7, 136);
   vsync();
   set_sprite_data(1, 2, pointer);
   set_sprite_tile(0, 1);

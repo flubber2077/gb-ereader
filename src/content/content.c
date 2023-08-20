@@ -14,6 +14,7 @@ const unsigned char formatted[] =
     //  "12345678901234567890"
     "Lorem ipsum dolor\n"
     "sit amet,\n"
+    "\n"
     "consectetur\n"
     "adipiscing elit,\n"
     "sed o eiusmod tempor\n"

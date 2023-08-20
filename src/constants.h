@@ -1,19 +1,26 @@
 #include <gb/gb.h>
 
-// possible states
+// game states
 #define SPLASHSCREEN 0
 #define READER 1
 #define BROWSER 2
+#define ABOUT 3
+#define SETTINGS 4
 
 // screen macros
-#define TILEHEIGHT 32
-#define TILEWIDTH 32
 #define LEFTBORDER 0
 #define RIGHTBORDER 20
-#define TOPSCREEN 1
+#define BOTTOMBORDER 17
+#define TOPBORDER 1
+#define TEXTWINDOWHEIGHT (BOTTOMBORDER - TOPBORDER)
 
 // text macros
 #define NEWLINE ((uint8_t)10)    // \n
 #define PAGEBREAK ((uint8_t)12)  // \f Formfeed
+#define ENDOFTEXT
+
+// printer macros
+#define CHUNKSIZE 8
+#define CHUNKPERWINDOW (TEXTWINDOWHEIGHT / CHUNKSIZE)
 
 uint8_t i;  // for any local counters

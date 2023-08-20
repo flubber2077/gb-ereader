@@ -8,6 +8,7 @@
 #include "screeneffects.h"
 #include "sgb/sgb.c"
 #include "splashscreen.c"
+#include "content/content.c"
 
 // put into struct;
 uint8_t state;
@@ -38,7 +39,7 @@ void main(void) {
         break;
 
       case READER:
-        reader();
+        state = reader(formatted);
         break;
     }
 
