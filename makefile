@@ -1,6 +1,6 @@
 export GBDK=/Users/Kyle/development/gameboy/gbdk
 LCC = $(GBDK)/bin/lcc
-FLAGS := -Wa-l -Wl-m -Wl-j -Wm-yn"E-Reader"
+FLAGS := -Wa-l -Wl-m -Wl-j -Wm-yn"E-Reader" -Wm-yo2 -Wm-yt0x19
 TARGET := ./build
 SOURCE := ./src
 BIN = ./bin

@@ -1,4 +1,4 @@
-#include <gb/gb.h>
+#include <stdint.h>
 
 // game states
 #define SPLASHSCREEN 0

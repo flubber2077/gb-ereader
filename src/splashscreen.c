@@ -5,7 +5,7 @@
 #include "content/splashData.c"
 #include "screeneffects.h"
 
-inline void initSplashSCreen(void) {
+inline void initSplashScreen(void) {
   HIDE_WIN;
   move_bkg(0, 0);
   set_bkg_data(0u, 114u, mario_data);
