@@ -6,8 +6,8 @@ SOURCE := ./src
 BIN = ./bin
 
 all:
-	$(LCC) $(FLAGS) -c -o ./bin/main.o ./src/main.c
-	$(LCC) $(FLAGS) -o ./build/main.gb ./bin/main.o
+	$(LCC) $(FLAGS) -c -debug -o ./bin/main.o ./src/main.c
+	$(LCC) $(FLAGS) -debug -o ./build/main.gb ./bin/main.o
 	@echo "Game exported succesfully!"
 	@echo "running game"
 	open build/main.gb

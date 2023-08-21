@@ -15,9 +15,9 @@
 #define TEXTWINDOWHEIGHT (BOTTOMBORDER - TOPBORDER)
 
 // text macros
-#define NEWLINE ((uint8_t)10)    // \n
-#define PAGEBREAK ((uint8_t)12)  // \f Formfeed
-#define ENDOFTEXT
+#define NEWLINE ((uint8_t)'\n')    // \n
+#define PAGEBREAK ((uint8_t)'\f')  // \f Formfeed
+#define ENDOFTEXT (uint8_t)0x3
 
 // printer macros
 #define CHUNKSIZE 8

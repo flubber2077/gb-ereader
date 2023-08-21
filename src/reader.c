@@ -29,22 +29,22 @@ inline void readerInit(void) {
 
 inline void initialChunks(const unsigned char file[], uint16_t* readerPlace,
                           uint16_t* lastReaderPlace) {
-  *readerPlace += printChunk(&file[*readerPlace], TOPBORDER);
+  printChunk(file, TOPBORDER, readerPlace);
   *lastReaderPlace = *readerPlace;
-  *readerPlace += printChunk(&file[*readerPlace], TOPBORDER + CHUNKSIZE);
+  printChunk(file, TOPBORDER + CHUNKSIZE, readerPlace);
 }
 
 inline void advanceChunks(const unsigned char file[], uint16_t* readerPlace,
                           uint16_t* lastReaderPlace) {
-  *lastReaderPlace += printChunk(&file[*lastReaderPlace], TOPBORDER);
-  *readerPlace += printChunk(&file[*readerPlace], TOPBORDER + CHUNKSIZE);
+  printChunk(file, TOPBORDER, lastReaderPlace);
+  printChunk(file, TOPBORDER + CHUNKSIZE, lastReaderPlace);
 }
 
-inline uint8_t reader(const uint16_t* currentChunkPointer) {
+inline uint8_t reader(const unsigned char file[]) {
   readerInit();
   static uint16_t readerPlace, lastReaderPlace;
   readerPlace = 0, lastReaderPlace = 0;
-  initialChunks(formatted, &readerPlace, &lastReaderPlace);
+  initialChunks(file, &readerPlace, &lastReaderPlace);
   while (1) {
     delayFrame(5);
     switch (joypad()) {
