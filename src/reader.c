@@ -27,33 +27,45 @@ inline void readerInit(void) {
   fadein();
 }
 
-inline void initialChunks(const unsigned char file[], uint16_t* readerPlace,
+inline uint8_t initialChunks(const unsigned char file[], uint16_t* readerPlace,
                           uint16_t* lastReaderPlace) {
   printChunk(file, TOPBORDER, readerPlace);
   *lastReaderPlace = *readerPlace;
-  printChunk(file, TOPBORDER + CHUNKSIZE, readerPlace);
+  return printChunk(file, TOPBORDER + CHUNKSIZE, readerPlace);
 }
 
-inline void advanceChunks(const unsigned char file[], uint16_t* readerPlace,
+inline uint8_t advanceChunks(const unsigned char file[], uint16_t* readerPlace,
                           uint16_t* lastReaderPlace) {
   printChunk(file, TOPBORDER, lastReaderPlace);
-  printChunk(file, TOPBORDER + CHUNKSIZE, lastReaderPlace);
+  return printChunk(file, TOPBORDER + CHUNKSIZE, readerPlace);
 }
 
 inline uint8_t reader(const unsigned char file[]) {
   readerInit();
+  static uint8_t endOfFile = 0;
   static uint16_t readerPlace, lastReaderPlace;
   readerPlace = 0, lastReaderPlace = 0;
   initialChunks(file, &readerPlace, &lastReaderPlace);
-  while (1) {
+  while (!endOfFile) {
     delayFrame(5);
     switch (joypad()) {
       case (J_A):
-        advanceChunks(formatted, &readerPlace, &lastReaderPlace);
+        const uint8_t controlChar = advanceChunks(formatted, &readerPlace, &lastReaderPlace);
+        if(controlChar == ENDOFTEXT){
+          endOfFile = 1;
+        }
         break;
       case (J_B):
         return BROWSER;
         break;
     }
+  }
+  while(1){
+    switch(joypad()) {
+      case(J_B):
+      return BROWSER;
+      break;
+    }
+
   }
 }

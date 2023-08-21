@@ -3,6 +3,14 @@
 
 #include "constants.h"
 
+inline uint8_t fillRest(uint8_t y) {
+  for (y; y < BOTTOMBORDER; y++) {
+    for (uint8_t x = LEFTBORDER; x < RIGHTBORDER; x++) {
+      set_bkg_tile_xy(x, y, ' ');
+    }
+  }
+}
+
 // prints chars to background from FILE on line Y
 uint8_t printLine(const unsigned char file[], uint8_t* y,
                   uint16_t* readerPlace) {
@@ -14,7 +22,7 @@ uint8_t printLine(const unsigned char file[], uint8_t* y,
       while (tileX < RIGHTBORDER) {
         set_bkg_tile_xy(tileX++, *y, ' ');
       }
-      uint8_t controlChar = *readerPlace;
+      uint8_t controlChar = file[*readerPlace];
       (*readerPlace)++;
       return controlChar;
     } else {
@@ -32,7 +40,10 @@ uint8_t printChunk(const unsigned char file[], uint8_t y,
     printLineReturn = printLine(file, &lineY, readerPlace);
     switch (printLineReturn) {
       case (ENDOFTEXT):
+        fillRest(++lineY);
         return ENDOFTEXT;
+        break;
+      case (NEWLINE):
         break;
     }
     lineY++;
