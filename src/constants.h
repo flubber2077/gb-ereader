@@ -15,7 +15,7 @@
 #define TEXTWINDOWHEIGHT (BOTTOMBORDER - TOPBORDER)
 
 // text macros
-#define NEWLINE ((uint8_t)'\n')    // \n
+#define NEWLINE ((uint8_t)'\x01')    // \n
 #define PAGEBREAK ((uint8_t)'\f')  // \f Formfeed
 #define ENDOFTEXT (uint8_t)12
 

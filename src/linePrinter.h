@@ -22,9 +22,7 @@ uint8_t printLine(const unsigned char file[], uint8_t* y,
       while (tileX < RIGHTBORDER) {
         set_bkg_tile_xy(tileX++, *y, ' ');
       }
-      uint8_t controlChar = file[*readerPlace];
-      (*readerPlace)++;
-      return controlChar;
+      return file[(*readerPlace)++];
     } else {
       set_bkg_tile_xy(tileX++ + LEFTBORDER, *y, file[(*readerPlace)++]);
     }

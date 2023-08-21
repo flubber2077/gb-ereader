@@ -30,9 +30,9 @@ void main(void) {
   while (1) {
     switch (state) {
       case SPLASHSCREEN:
-        splashscreen();
-        state = BROWSER;
-        break;
+      splashscreen();
+      state = BROWSER;
+      break;
 
       case BROWSER:
         state = browser();
